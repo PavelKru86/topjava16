@@ -4,36 +4,30 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Meal {
-    private Integer id;
+public class Meal extends AbstractBaseEntity {
+    private LocalDateTime datetime;
 
-    private final LocalDateTime dateTime;
+    private String description;
 
-    private final String description;
+    private int calories;
 
-    private final int calories;
+    public Meal() {
 
-    public Meal(LocalDateTime dateTime, String description, int calories) {
-        this(null, dateTime, description, calories);
     }
 
-    public Meal(Integer id, LocalDateTime dateTime, String description, int calories) {
-        this.id = id;
-        this.dateTime = dateTime;
+    public Meal(LocalDateTime datetime, String description, int calories) {
+        this(null, datetime, description, calories);
+    }
+
+    public Meal(Integer id, LocalDateTime datetime, String description, int calories) {
+        super(id);
+        this.datetime = datetime;
         this.description = description;
         this.calories = calories;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public LocalDateTime getDateTime() {
-        return dateTime;
+        return datetime;
     }
 
     public String getDescription() {
@@ -45,22 +39,30 @@ public class Meal {
     }
 
     public LocalDate getDate() {
-        return dateTime.toLocalDate();
+        return datetime.toLocalDate();
     }
 
     public LocalTime getTime() {
-        return dateTime.toLocalTime();
+        return datetime.toLocalTime();
     }
 
-    public boolean isNew() {
-        return id == null;
+    public void setDatetime(LocalDateTime datetime) {
+        this.datetime = datetime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
     @Override
     public String toString() {
         return "Meal{" +
                 "id=" + id +
-                ", dateTime=" + dateTime +
+                ", datetime=" + datetime +
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
                 '}';
